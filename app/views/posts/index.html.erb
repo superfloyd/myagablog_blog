@@ -1,0 +1,31 @@
+<h1>Aga's Blog</h1>
+
+<table>
+  <tr>
+    <th>Post</th>
+    
+<td colspan='3'> </td>
+
+    <th> Created at </th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @posts.each do |post| %>
+  <tr>
+    <td><p> <%= link_to post.title, post %> </p> </td>
+    <td colspan='3'> </td>
+   <!-- <td> <p> <%= post.body %>  </p> </td-->
+    <td> <p> <%= time_ago_in_words(post.created_at) %> ago </p> </td>
+   
+
+
+    <td>  <p> <%= link_to 'Edit', edit_post_path(post) %>  </p> </td>
+    <td>  <p>    <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %> </p> </td>
+
+  </tr>
+<% end %>
+</table>
+<br />
+
+<%= link_to 'New Post', new_post_path %>

@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <b>Title:</b>
+  <%= @post.title %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= @post.body %>
+</p>
+
+<p> <% @post.comments.each do |comment| %> </p>
+<%= comment.body %> 
+<p> <%= time_ago_in_words(comment.created_at) %>  ago </p> 
+<% end %>
+
+
+<strong> Post a new comment </strong>
+<p>
+<%= form_for [@post, @post.comments.build ] do |f| %>
+<p> <%=  f.text_area :body, :size => '10x10'    %></p>
+<p> <%= f.submit "Submit your comment!" %> </p>
+<% end %>
+</p>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
